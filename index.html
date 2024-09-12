@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Web Popup</title>
+    <style>
+        /* 样式表开始 */
+        /* 弹窗容器样式 */
+        .popup-container {
+            position: fixed; /* 固定定位，相对于视口 */
+            top: 50%; /* 位于视口顶部的50%处 */
+            left: 50%; /* 位于视口左侧的50%处 */
+            transform: translate(-50%, -50%); /* 使用 transform 属性将其水平和垂直居中 */
+            background-color: #f0f0f0; /* 背景颜色 */
+            padding: 10px; /* 内边距 */
+            border-radius: 10px; /* 圆角 */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 阴影效果 */
+            font-family: Arial, sans-serif; /* 字体 */
+            display: block; /* 默认显示弹窗 */
+            border: none; /* 去除边框 */
+        }
+
+        /* 颜色变化的方框样式 */
+        .color-changing-box {
+            width: 80vw; /* 使用视口宽度的80% */
+            height: 40vw; /* 使用视口宽度的40% */
+            box-sizing: border-box; /* 使用 border-box 盒子模型 */
+            display: flex; /* 使用 Flex 布局 */
+            justify-content: center; /* 在容器内水平居中 */
+            align-items: center; /* 在容器内垂直居中 */
+            font-size: 8vw; /* 使用视口宽度的6% */
+            color: white; /* 文本颜色 */
+            transition: background-color 0.8s; /* 颜色切换过渡效果，0.8秒 */
+            cursor: default; /* 默认指针 */
+            border: none; /* 去除边框 */
+        }
+
+        /* 鼠标移动到关闭按钮时设置为手型 */
+        #closeButton:hover {
+             cursor: pointer;
+         }
+
+         .gao-yang{
+            font-size: 7em; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            height: 100vh; 
+            margin: 0;
+            background-color:#f0f0f0;
+            font-family: Arial, sans-serif;
+            color:rgb(33,37,43);
+            position: relative;
+         }
+
+         /* 添加的页脚样式 */
+         footer {
+             text-align: center;
+             margin-top: 20px; /* 页脚与内容的间距 */
+         }
+    </style>
+</head>
+<body>
+    <!-- 页面中央显示的标题 -->
+    <div class="gao-yang">
+        <a  href="blog.html" target="_self" style="text-decoration:none;color:rgb(33,37,43);">!高扬血压表!</a>
+    </div>
+    <!-- 弹窗容器 -->
+    <div class="popup-container" id="popupContainer">
+        <!-- 变色方框 -->
+        <div class="color-changing-box" id="color-changing-box">
+            <!-- 关闭按钮 -->
+            <span id="closeButton">!良宇牛逼!</span>
+        </div>
+    </div>
+
+    <!-- 页面底部显示备案号 -->
+    <footer>
+            <a href="http://www.beian.miit.gov.cn" target="_blank" style="font-size: 12px;color: rgb(142,164,184);text-decoration: none;">桂ICP备2024024590号</a>
+    </footer>
+
+
+    <!-- JavaScript 代码 -->
+    <script>
+        // 获取随机颜色的函数
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // 获取页面中的元素
+        const popupContainer = document.getElementById('popupContainer');
+        const colorChangingBox = document.getElementById('color-changing-box');
+        const closeButton = document.getElementById('closeButton');
+
+        // 当点击关闭按钮时
+        closeButton.addEventListener('click', () => {
+            popupContainer.style.display = 'none'; // 点击后关闭弹窗
+        });
+
+        // 每隔一段时间改变颜色
+        setInterval(() => {
+            const newColor = getRandomColor();
+            colorChangingBox.style.backgroundColor = newColor;
+        }, 800); /* 颜色切换间隔改为0.8秒 */
+    </script>
+</body>
+</html>
+
